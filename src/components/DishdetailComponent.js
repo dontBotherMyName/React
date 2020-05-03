@@ -3,12 +3,6 @@ import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 import { DISHES } from '../shared/dishes'
 
 class DishDetail extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            dishes: DISHES,
-        }
-    }
     renderDish(dish) {
         if(dish == undefined){
             return (
