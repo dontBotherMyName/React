@@ -53,7 +53,6 @@ const DishDetail = (props) => {
                 </div>
                 <div className="row">
                     <div className="col-12 col-md-5 m-1">
-                        {console.log(props.comments)}
                         <RenderDish dish={ props.dish } />
                     </div>
                     <div className="col-12 col-sm-5 m-1">
