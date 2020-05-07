@@ -19,6 +19,11 @@ export default class CommentForm extends Component {
             isModalOpen: !this.state.isModalOpen
         });
     }
+
+    handleSubmit(values) {
+        this.toggleModal();
+        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment)
+    }
     render() {
         
         return (
@@ -27,7 +32,7 @@ export default class CommentForm extends Component {
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}> Submit Comment </ModalHeader>
                     <ModalBody>
-                        <LocalForm>
+                        <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
                             <FormGroup>
                                 <Label htmlFor="rating">Rating</Label>
                                 <Control.select model=".rating" className="form-control" name="rating">
@@ -40,9 +45,9 @@ export default class CommentForm extends Component {
                             </FormGroup>
                             
                             <FormGroup>
-                                <Label htmlFor="name">Your Name</Label>
-                                <Control.text model=".name" id="name" name="name" placeholder="Your Name" className="form-control" validators={{ minLength: minLength(3), maxLength: maxLength(15)}}/>
-                                <Errors className="text-danger" model=".name" show="touched" messages={{
+                                <Label htmlFor="author">Your Name</Label>
+                                <Control.text model=".author" id="author" name="author" placeholder="Your Name" className="form-control" validators={{ minLength: minLength(3), maxLength: maxLength(15)}}/>
+                                <Errors className="text-danger" model=".author" show="touched" messages={{
                                     minLength: 'Should at least be three characters long',
                                     maxLength: 'Should be less than or equal to 15 characters'
                                 }} />
