@@ -1,13 +1,15 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { baseUrl } from '../shared/baseUrl';
 
-function RenderLeader({ leader }) {  
+function RenderLeader({ leader }) {
+    console.log(leader.image)  
     return(
         <div key={ leader.id } className="col-12 mt-2">
             <Media tag="li">
                 <Media left middle className="col-12 col-md-3 mt-1">
-                    <Media object src={ leader.image } alt={ leader.name } className="ml-2"/>
+                    <Media object src={ baseUrl + '/'+ leader.image } alt={ leader.name } />
                 </Media>
                 <Media body className="col-12 col-md mt-2">
                     <Media heading>{ leader.name }</Media>
@@ -20,10 +22,11 @@ function RenderLeader({ leader }) {
 }
 function About(props) {
     
-    const leaders = props.leaders.map((leader) => {
-        console.log(leader)
+    const leaders = props.leaders.leaders.map((leader) => {
         return (
-                <RenderLeader leader={leader} />
+                <div key={leader.id}>
+                    <RenderLeader leader={leader} />
+                </div>
         );
     });
     
